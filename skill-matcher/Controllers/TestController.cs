@@ -20,6 +20,7 @@ namespace SkillMatcher.Controllers
         {
             return Ok(testService.GetTestList());
         }
+
         [HttpGet("{id}")]
         public IActionResult GetTestById(Guid id)
         {

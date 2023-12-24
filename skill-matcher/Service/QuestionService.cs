@@ -17,7 +17,7 @@ namespace SkillMatcher.Service
         public Guid CreateQuestion(PostAndPutQuestionDto model)
         {
             var question = new Question();
-            question.Id = Guid.NewGuid();
+        //    question.Id = Guid.NewGuid();
             question.QuestionText["Persian"] = model.PersianText;
             question.QuestionText["English"] = model.EnglishText;
             question.Level = model.Level;

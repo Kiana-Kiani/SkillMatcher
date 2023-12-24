@@ -1,4 +1,6 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Bson.Serialization;
 using SkillMatcher.DataModel;
 using SkillMatcher.Dto;
 using SkillMatcher.Repository.Contracts;
@@ -17,6 +19,8 @@ namespace SkillMatcher.Service
         }
         public List<TestDto> GetTestList()
         {
+            //BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
+            //BsonDefaults.GuidRepresentationMode = GuidRepresentationMode.V3;
 
             var tests = testRepository.GetTestList();
             var testDto = new List<TestDto>();
@@ -46,7 +50,7 @@ namespace SkillMatcher.Service
         {
             Test test = new Test()
             {
-                Id = Guid.NewGuid(),
+             //   Id = Guid.NewGuid(),
                 Name = model.Name,
                 About = model.About,
                 Level = model.Level,

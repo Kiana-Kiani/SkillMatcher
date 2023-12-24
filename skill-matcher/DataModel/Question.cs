@@ -1,10 +1,11 @@
-﻿using SkillMatcher.Enums;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using SkillMatcher.Enums;
 
 namespace SkillMatcher.DataModel
 {
     public class Question
     {
-        // [BsonId]
+        [BsonId]
         public Guid Id { get; set; } // MongoDB-generated ID
         public Guid TestId { get; set; } // Foreign key to Test
         public Dictionary<string, string> QuestionText { get; set; } = new Dictionary<string, string>();

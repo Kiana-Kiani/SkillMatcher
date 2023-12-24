@@ -1,7 +1,10 @@
-﻿namespace SkillMatcher.Dto
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace SkillMatcher.Dto
 {
     public class TestDto
     {
+        [BsonId]
         public Guid Id { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }

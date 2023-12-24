@@ -60,8 +60,8 @@ namespace SkillMatcher.Repository
 
         public Test GetTestById(Guid id)
         {
-            var test = TestCollection.Find(q => q.Id == id);
-            return (Test)test;
+            var test = TestCollection.Find(q => q.Id == id).FirstOrDefault();
+            return test;
         }
     }
 }
