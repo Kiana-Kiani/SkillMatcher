@@ -6,8 +6,8 @@ namespace SkillMatcher.Repository.Contracts
     public interface IQuestionRepository
     {
         bool InsertQuestion(Question question);
-        List<Question> GetQuestionsByTestId(string testId);
-        bool DeleteQuestionById(string id);
-        int UpdateQuestionById(string id, QuestionDto question);
+        List<Question> GetQuestionsByTestId(Guid testId);
+        bool DeleteQuestionById(Guid id);
+        int UpdateQuestionById(Guid id, QuestionDto question);
     }
 }

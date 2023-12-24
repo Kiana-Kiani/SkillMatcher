@@ -4,7 +4,7 @@ namespace SkillMatcher.Dto
 {
     public class QuestionDto
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string EnglishText { get; set; }
         public string PersianText { get; set; }
         public QuestionType Type { get; set; }

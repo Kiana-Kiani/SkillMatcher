@@ -7,7 +7,7 @@ namespace SkillMatcher.Repository.Contracts
     {
         List<Test> GetTestList();
         bool CreateTest(Test test);
-        bool DeleteTestById(string id);
-        int UpdateTestById(string id, TestDto testDto);
+        bool DeleteTestById(Guid id);
+        int UpdateTestById(Guid id, TestDto testDto);
     }
 }

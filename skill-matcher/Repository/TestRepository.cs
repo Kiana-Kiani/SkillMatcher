@@ -37,14 +37,14 @@ namespace SkillMatcher.Repository
                 return false;
             }
         }
-        public bool DeleteTestById(string id)
+        public bool DeleteTestById(Guid id)
         {
             var deleteResult = TestCollection.DeleteOne(q => q.Id == id);
             if (deleteResult.DeletedCount == 1)
                 return true;
             return false;
         }
-        public int UpdateTestById(string id, TestDto testDto)
+        public int UpdateTestById(Guid id, TestDto testDto)
         {
             var updateDefinition = Builders<Test>.Update.Set(q => q.Name, testDto.Name)
                 .Set(q => q.DateTime, DateTime.Now)

@@ -17,7 +17,7 @@ namespace SkillMatcher.Service
         public bool CreateQuestion(QuestionDto model)
         {
             var question = new Question();
-           // question.Id = new Guid;
+            question.Id = Guid.NewGuid();
             question.QuestionText["Persian"] = model.PersianText;
             question.QuestionText["English"] = model.EnglishText;
             question.Level = model.Level;
@@ -33,15 +33,15 @@ namespace SkillMatcher.Service
             }
             return questionRepository.InsertQuestion(question);
         }
-        public bool DeleteQuestionById(string id)
+        public bool DeleteQuestionById(Guid id)
         {
             return questionRepository.DeleteQuestionById(id);
         }
-        public List<Question> GetQuestionsByTestId(string testId)
+        public List<Question> GetQuestionsByTestId(Guid testId)
         {
             return questionRepository.GetQuestionsByTestId(testId);
         }
-        public int UpdateQuestionById(string id, QuestionDto questionDto)
+        public int UpdateQuestionById(Guid id, QuestionDto questionDto)
         {
             return questionRepository.UpdateQuestionById(id, questionDto);
         }

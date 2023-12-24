@@ -18,7 +18,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpGet("{testId}")]
-        public IActionResult GetQuestionsByTestId(string testId)
+        public IActionResult GetQuestionsByTestId(Guid testId)
         {
             var questions = questionService.GetQuestionsByTestId(testId);
             return Ok(questions);
@@ -38,7 +38,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteQuestionById(string id)
+        public IActionResult DeleteQuestionById(Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +52,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateQuestionById(string id, [FromBody] QuestionDto questionDto)
+        public IActionResult UpdateQuestionById(Guid id, [FromBody] QuestionDto questionDto)
         {
             if (!ModelState.IsValid)
             {

@@ -28,7 +28,7 @@ namespace SkillMatcher.Service
         {
             Test test = new Test()
             {
-                Id = model.Id,
+                Id = Guid.NewGuid(),
                 Name = model.Name,
                 About = model.About,
                 Level = model.Level,
@@ -37,11 +37,11 @@ namespace SkillMatcher.Service
 
             return testRepository.CreateTest(test);
         }
-        public bool DeleteTestById(string id)
+        public bool DeleteTestById(Guid id)
         {
             return testRepository.DeleteTestById(id);
         }
-        public int UpdateTestById(string id, TestDto testDto)
+        public int UpdateTestById(Guid id, TestDto testDto)
         {
             return testRepository.UpdateTestById(id, testDto);
         }

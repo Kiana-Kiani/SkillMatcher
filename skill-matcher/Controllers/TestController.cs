@@ -35,7 +35,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteTestById(string id)
+        public IActionResult DeleteTestById(Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +49,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateTestById(string id, [FromBody] TestDto model)
+        public IActionResult UpdateTestById(Guid id, [FromBody] TestDto model)
         {
             if (!ModelState.IsValid)
             {
