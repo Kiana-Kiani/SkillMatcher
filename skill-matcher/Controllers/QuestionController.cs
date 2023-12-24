@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkillMatcher.DataModel;
 using SkillMatcher.Dto;
-using SkillMatcher.Service;
 using SkillMatcher.Service.Interfaces;
 
 namespace SkillMatcher.Controllers
@@ -19,6 +19,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpGet("{testId}")]
+        [ProducesResponseType(typeof(Question), 200)]
         public IActionResult GetQuestionsByTestId(Guid testId)
         {
             var questions = questionService.GetQuestionsByTestId(testId);
@@ -26,6 +27,8 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(Guid), 200)]
+
         public IActionResult CreateQuestion([FromBody] PostAndPutQuestionDto model)
         {
             if (model == null)
@@ -41,31 +44,35 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public IActionResult DeleteQuestionById(Guid id)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             if (questionService.DeleteQuestionById(id))
                 return Ok(new { message = "Question deleted successfully." });
             else
-                return BadRequest(new { message = "Error." });
+                return BadRequest("Error.");
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public IActionResult UpdateQuestionById(Guid id, [FromBody] PostAndPutQuestionDto questionDto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new { message = "Error." });
+                return BadRequest("Error.");
             }
 
             var result = questionService.UpdateQuestionById(id, questionDto);
             if (result == 1)
             {
-                return Ok(new { message = "Question updated successfully." });
+                return Ok("Question updated successfully.");
             }
             else if (result == 0)
             {
@@ -73,7 +80,7 @@ namespace SkillMatcher.Controllers
             }
             else
             {
-                return StatusCode(500, "Question update failed.");
+                return BadRequest("Question update failed.");
             }
         }
     }

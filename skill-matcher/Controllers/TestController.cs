@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkillMatcher.DataModel;
 using SkillMatcher.Dto;
 using SkillMatcher.Service.Interfaces;
 
@@ -16,18 +17,21 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<Test>), 200)]
         public IActionResult GetTestList()
         {
             return Ok(testService.GetTestList());
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(Test), 200)]
         public IActionResult GetTestById(Guid id)
         {
             return Ok(testService.GetTestById(id));
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(Guid), 200)]
         public IActionResult CreateTest([FromBody] PostAndPutTestDto model)
         {
             if (model == null)
@@ -43,6 +47,8 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public IActionResult DeleteTestById(Guid id)
         {
             if (!ModelState.IsValid)
@@ -57,6 +63,8 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public IActionResult UpdateTestById(Guid id, [FromBody] PostAndPutTestDto model)
         {
             if (!ModelState.IsValid)
