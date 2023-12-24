@@ -46,7 +46,7 @@ namespace SkillMatcher.Repository
                 return true;
             return false;
         }
-        public int UpdateTestById(Guid id, TestDto testDto)
+        public int UpdateTestById(Guid id, PostAndPutTestDto testDto)
         {
             var updateDefinition = Builders<Test>.Update.Set(q => q.Name, testDto.Name)
                 .Set(q => q.DateTime, DateTime.Now)

@@ -14,7 +14,7 @@ namespace SkillMatcher.Service
         {
             this.questionRepository = questionRepository;
         }
-        public Guid CreateQuestion(QuestionDto model)
+        public Guid CreateQuestion(PostAndPutQuestionDto model)
         {
             var question = new Question();
             question.Id = Guid.NewGuid();
@@ -41,7 +41,7 @@ namespace SkillMatcher.Service
         {
             return questionRepository.GetQuestionsByTestId(testId);
         }
-        public int UpdateQuestionById(Guid id, QuestionDto questionDto)
+        public int UpdateQuestionById(Guid id, PostAndPutQuestionDto questionDto)
         {
             return questionRepository.UpdateQuestionById(id, questionDto);
         }

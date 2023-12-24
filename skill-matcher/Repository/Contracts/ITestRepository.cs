@@ -9,6 +9,6 @@ namespace SkillMatcher.Repository.Contracts
         Test GetTest(Guid id);
         Guid CreateTest(Test test);
         bool DeleteTestById(Guid id);
-        int UpdateTestById(Guid id, TestDto testDto);
+        int UpdateTestById(Guid id, PostAndPutTestDto testDto);
     }
 }

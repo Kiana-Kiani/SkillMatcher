@@ -27,7 +27,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateTest([FromBody] TestDto model)
+        public IActionResult CreateTest([FromBody] PostAndPutTestDto model)
         {
             if (model == null)
             {
@@ -56,7 +56,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateTestById(Guid id, [FromBody] TestDto model)
+        public IActionResult UpdateTestById(Guid id, [FromBody] PostAndPutTestDto model)
         {
             if (!ModelState.IsValid)
             {

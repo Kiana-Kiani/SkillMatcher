@@ -8,6 +8,6 @@ namespace SkillMatcher.Repository.Contracts
         Guid InsertQuestion(Question question);
         List<Question> GetQuestionsByTestId(Guid testId);
         bool DeleteQuestionById(Guid id);
-        int UpdateQuestionById(Guid id, QuestionDto question);
+        int UpdateQuestionById(Guid id, PostAndPutQuestionDto question);
     }
 }

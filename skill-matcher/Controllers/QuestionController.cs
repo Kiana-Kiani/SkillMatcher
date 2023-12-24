@@ -26,7 +26,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateQuestion([FromBody] QuestionDto model)
+        public IActionResult CreateQuestion([FromBody] PostAndPutQuestionDto model)
         {
             if (model == null)
             {
@@ -55,7 +55,7 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateQuestionById(Guid id, [FromBody] QuestionDto questionDto)
+        public IActionResult UpdateQuestionById(Guid id, [FromBody] PostAndPutQuestionDto questionDto)
         {
             if (!ModelState.IsValid)
             {

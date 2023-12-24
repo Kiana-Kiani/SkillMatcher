@@ -45,7 +45,7 @@ namespace SkillMatcher.Repository
                 return Guid.Empty;
             }
         }
-        public int UpdateQuestionById(Guid id, QuestionDto questionDto)
+        public int UpdateQuestionById(Guid id, PostAndPutQuestionDto questionDto)
         {
             var question = new Question();
             question.Options = new List<Option>();

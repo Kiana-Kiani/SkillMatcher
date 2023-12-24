@@ -25,7 +25,7 @@ namespace SkillMatcher.Service
             }
             return testDto;
         }
-        public Guid CreateTest(TestDto model)
+        public Guid CreateTest(PostAndPutTestDto model)
         {
             Test test = new Test()
             {
@@ -42,7 +42,7 @@ namespace SkillMatcher.Service
         {
             return testRepository.DeleteTestById(id);
         }
-        public int UpdateTestById(Guid id, TestDto testDto)
+        public int UpdateTestById(Guid id, PostAndPutTestDto testDto)
         {
             return testRepository.UpdateTestById(id, testDto);
         }

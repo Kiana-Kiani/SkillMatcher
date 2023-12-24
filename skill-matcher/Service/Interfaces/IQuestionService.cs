@@ -5,11 +5,11 @@ namespace SkillMatcher.Service.Interfaces
 {
     public interface IQuestionService
     {
-        Guid CreateQuestion(QuestionDto question);
+        Guid CreateQuestion(PostAndPutQuestionDto question);
         List<Question> GetQuestionsByTestId(Guid testId);
         bool DeleteQuestionById(Guid id);
 
-        int UpdateQuestionById(Guid id, QuestionDto question);
+        int UpdateQuestionById(Guid id, PostAndPutQuestionDto question);
     }
 }
 
