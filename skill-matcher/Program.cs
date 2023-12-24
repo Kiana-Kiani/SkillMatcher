@@ -9,11 +9,12 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(
         policy =>
         {
-        policy.WithOrigins("https://skill-matcher-api.liara.run",
-                            "http://skill-matcher-api.liara.run")
-                       .AllowAnyMethod()
-                        .AllowAnyHeader();
-});
+            policy.WithOrigins("https://skill-matcher-api.liara.run",
+                                "http://skill-matcher-api.liara.run",
+                "https://skill-matcher-api.liara.run/swagger/index.html")
+                           .AllowAnyMethod()
+                            .AllowAnyHeader();
+        });
 });
 // Add services to the container.
 
