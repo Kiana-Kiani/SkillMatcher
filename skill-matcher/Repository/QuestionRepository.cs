@@ -19,14 +19,14 @@ namespace SkillMatcher.Repository
             db = client.GetDatabase("JobOffererTest");
             QuestionsCollection = db.GetCollection<Question>("Questions");
         }
-        public bool DeleteQuestionById(string id)
+        public bool DeleteQuestionById(Guid id)
         {
             var deleteResult = QuestionsCollection.DeleteOne(q => q.Id == id);
             if (deleteResult.DeletedCount == 1)
                 return true;
             return false;
         }
-        public List<Question> GetQuestionsByTestId(string testId)
+        public List<Question> GetQuestionsByTestId(Guid testId)
         {
             var filter = Builders<Question>.Filter.Eq(q => q.TestId, testId);
             var question = QuestionsCollection.Find(filter).ToList();
@@ -44,7 +44,7 @@ namespace SkillMatcher.Repository
                 return false;
             }
         }
-        public int UpdateQuestionById(string id, QuestionDto questionDto)
+        public int UpdateQuestionById(Guid id, QuestionDto questionDto)
         {
             var question = new Question();
             question.Options = new List<Option>();
