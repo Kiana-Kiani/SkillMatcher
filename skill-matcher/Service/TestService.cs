@@ -1,4 +1,5 @@
-﻿using SkillMatcher.DataModel;
+﻿using MongoDB.Bson;
+using SkillMatcher.DataModel;
 using SkillMatcher.Dto;
 using SkillMatcher.Repository.Contracts;
 using SkillMatcher.Service.Interfaces;
@@ -25,6 +26,22 @@ namespace SkillMatcher.Service
             }
             return testDto;
         }
+        public TestDto GetTestById(Guid id)
+        {
+            var test = testRepository.GetTestById(id);
+            var testDto = new TestDto()
+            {
+                Id = test.Id,
+                Name = test.Name,
+                About = test.About,
+                Level = test.Level,
+                DateTime = test.DateTime,
+
+
+            };
+            return testDto;
+        }
+
         public Guid CreateTest(PostAndPutTestDto model)
         {
             Test test = new Test()
@@ -47,21 +64,7 @@ namespace SkillMatcher.Service
             return testRepository.UpdateTestById(id, testDto);
         }
 
-        public TestDto GetTest(Guid id)
-        {
-            var test = testRepository.GetTest(id);
-            var testDto = new TestDto()
-            {
-                Id= test.Id,
-                Name= test.Name,
-                About = test.About,
-                Level = test.Level,
-                DateTime = test.DateTime,
-
-
-            };
-            return testDto;
-        }
+       
     }
 }
 

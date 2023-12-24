@@ -58,7 +58,7 @@ namespace SkillMatcher.Repository
             return (int)result.ModifiedCount;
         }
 
-        public Test GetTest(Guid id)
+        public Test GetTestById(Guid id)
         {
             var test = TestCollection.Find(q => q.Id == id);
             return (Test)test;
