@@ -5,7 +5,7 @@ namespace SkillMatcher.Service.Interfaces
 {
     public interface IQuestionService
     {
-        bool CreateQuestion(QuestionDto question);
+        Guid CreateQuestion(QuestionDto question);
         List<Question> GetQuestionsByTestId(Guid testId);
         bool DeleteQuestionById(Guid id);
 

@@ -2,6 +2,7 @@
 using SkillMatcher.DataModel;
 using SkillMatcher.Dto;
 using SkillMatcher.Repository.Contracts;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SkillMatcher.Repository
 {
@@ -32,16 +33,16 @@ namespace SkillMatcher.Repository
             var question = QuestionsCollection.Find(filter).ToList();
             return question;
         }
-        public bool InsertQuestion(Question question)
+        public Guid InsertQuestion(Question question)
         {
             try
             {
                 QuestionsCollection.InsertOne(question);
-                return true;
+                return question.Id;
             }
             catch
             {
-                return false;
+                return Guid.Empty;
             }
         }
         public int UpdateQuestionById(Guid id, QuestionDto questionDto)

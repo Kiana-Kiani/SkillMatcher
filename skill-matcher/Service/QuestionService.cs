@@ -14,7 +14,7 @@ namespace SkillMatcher.Service
         {
             this.questionRepository = questionRepository;
         }
-        public bool CreateQuestion(QuestionDto model)
+        public Guid CreateQuestion(QuestionDto model)
         {
             var question = new Question();
             question.Id = Guid.NewGuid();

@@ -2,6 +2,7 @@
 using SkillMatcher.Dto;
 using SkillMatcher.Repository.Contracts;
 using SkillMatcher.Service.Interfaces;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SkillMatcher.Service
 {
@@ -24,7 +25,7 @@ namespace SkillMatcher.Service
             }
             return testDto;
         }
-        public bool CreateTest(TestDto model)
+        public Guid CreateTest(TestDto model)
         {
             Test test = new Test()
             {
@@ -44,6 +45,22 @@ namespace SkillMatcher.Service
         public int UpdateTestById(Guid id, TestDto testDto)
         {
             return testRepository.UpdateTestById(id, testDto);
+        }
+
+        public TestDto GetTest(Guid id)
+        {
+            var test = testRepository.GetTest(id);
+            var testDto = new TestDto()
+            {
+                Id= test.Id,
+                Name= test.Name,
+                About = test.About,
+                Level = test.Level,
+                DateTime = test.DateTime,
+
+
+            };
+            return testDto;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using SkillMatcher.DataModel;
 using SkillMatcher.Dto;
 using SkillMatcher.Repository.Contracts;
@@ -25,16 +26,17 @@ namespace SkillMatcher.Repository
             var tests = TestCollection.Find(_ => true).ToList();
             return tests;
         }
-        public bool CreateTest(Test test)
+        public Guid CreateTest(Test test)
         {
+
             try
             {
                 TestCollection.InsertOne(test);
-                return true;
+                return test.Id;
             }
             catch
             {
-                return false;
+                return Guid.Empty;
             }
         }
         public bool DeleteTestById(Guid id)
@@ -54,6 +56,12 @@ namespace SkillMatcher.Repository
 
             var result = TestCollection.UpdateOne(filter, updateDefinition);
             return (int)result.ModifiedCount;
+        }
+
+        public Test GetTest(Guid id)
+        {
+            var test = TestCollection.Find(q => q.Id == id);
+            return (Test)test;
         }
     }
 }

@@ -20,6 +20,10 @@ namespace SkillMatcher.Controllers
         {
             return Ok(testService.GetTestList());
         }
+        public IActionResult GetTestById(Guid id)
+        {
+            return Ok(testService.GetTest(id));
+        }
 
         [HttpPost]
         public IActionResult CreateTest([FromBody] TestDto model)
@@ -28,8 +32,10 @@ namespace SkillMatcher.Controllers
             {
                 return BadRequest(new { message = "Error." });
             }
-            if (testService.CreateTest(model))
-                return Ok("Test Creasted successfully.");
+
+            var id = testService.CreateTest(model);
+            if (id != Guid.Empty)
+                return Ok(id);
             else
                 return BadRequest(new { message = "Error." });
         }

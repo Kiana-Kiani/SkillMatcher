@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillMatcher.Dto;
+using SkillMatcher.Service;
 using SkillMatcher.Service.Interfaces;
 
 namespace SkillMatcher.Controllers
@@ -31,8 +32,10 @@ namespace SkillMatcher.Controllers
             {
                 return BadRequest(new { message = "Error." });
             }
-            if (questionService.CreateQuestion(model))
-                return Ok("Question Creasted successfully.");
+
+            var id = questionService.CreateQuestion(model);
+            if (id != Guid.Empty)
+                return Ok(id);
             else
                 return BadRequest(new { message = "Error." });
         }
