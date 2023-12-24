@@ -26,18 +26,18 @@ namespace SkillMatcher.Repository
             var tests = TestCollection.Find(_ => true).ToList();
             return tests;
         }
-        public Guid CreateTest(Test test)
+        public Test CreateTest(Test test)
         {
 
-            try
-            {
+            //try
+            //{
                 TestCollection.InsertOne(test);
-                return test.Id;
-            }
-            catch
-            {
-                return Guid.Empty;
-            }
+                return test;
+            //}
+            //catch
+            //{
+            //    return Guid.Empty;
+            //}
         }
         public bool DeleteTestById(Guid id)
         {

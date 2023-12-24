@@ -14,10 +14,10 @@ namespace SkillMatcher.Service
         {
             this.questionRepository = questionRepository;
         }
-        public Guid CreateQuestion(PostAndPutQuestionDto model)
+        public Question CreateQuestion(Guid testId, PostAndPutQuestionDto model)
         {
             var question = new Question();
-        //    question.Id = Guid.NewGuid();
+           question.TestId = testId;
             question.QuestionText["Persian"] = model.PersianText;
             question.QuestionText["English"] = model.EnglishText;
             question.Level = model.Level;

@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using SkillMatcher.DataModel;
 using SkillMatcher.Dto;
 
 namespace SkillMatcher.Service.Interfaces
@@ -8,7 +9,7 @@ namespace SkillMatcher.Service.Interfaces
         List<TestDto> GetTestList();
         TestDto GetTestById(Guid id);
 
-        Guid CreateTest(PostAndPutTestDto testDto);
+        Test CreateTest(PostAndPutTestDto testDto);
         bool DeleteTestById(Guid id);
         int UpdateTestById(Guid id, PostAndPutTestDto testDto);
     }

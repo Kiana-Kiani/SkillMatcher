@@ -26,19 +26,19 @@ namespace SkillMatcher.Controllers
             return Ok(questions);
         }
 
-        [HttpPost]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [HttpPost("{testId}")]
+     //   [ProducesResponseType(typeof(Guid), 200)]
 
-        public IActionResult CreateQuestion([FromBody] PostAndPutQuestionDto model)
+        public IActionResult CreateQuestion(Guid testId, [FromBody] PostAndPutQuestionDto model)
         {
             if (model == null)
             {
                 return BadRequest(new { message = "Error." });
             }
 
-            var id = questionService.CreateQuestion(model);
-            if (id != Guid.Empty)
-                return Ok(id);
+            var question = questionService.CreateQuestion(testId, model);
+            if (question != null)
+                return Ok(question);
             else
                 return BadRequest(new { message = "Error." });
         }

@@ -46,7 +46,7 @@ namespace SkillMatcher.Service
             return testDto;
         }
 
-        public Guid CreateTest(PostAndPutTestDto model)
+        public Test CreateTest(PostAndPutTestDto model)
         {
             Test test = new Test()
             {

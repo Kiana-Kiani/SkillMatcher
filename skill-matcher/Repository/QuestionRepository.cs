@@ -33,16 +33,16 @@ namespace SkillMatcher.Repository
             var question = QuestionsCollection.Find(filter).ToList();
             return question;
         }
-        public Guid InsertQuestion(Question question)
+        public Question InsertQuestion(Question question)
         {
             try
             {
                 QuestionsCollection.InsertOne(question);
-                return question.Id;
+                return question;
             }
             catch
             {
-                return Guid.Empty;
+                return null;
             }
         }
         public int UpdateQuestionById(Guid id, PostAndPutQuestionDto questionDto)

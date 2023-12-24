@@ -39,11 +39,11 @@ namespace SkillMatcher.Controllers
                 return BadRequest(new { message = "Error." });
             }
 
-            var id = testService.CreateTest(model);
-            if (id != Guid.Empty)
-                return Ok(id);
-            else
-                return BadRequest(new { message = "Error." });
+            var test = testService.CreateTest(model);
+     //       if (test. != null)
+                return Ok(test);
+            //else
+            //    return BadRequest(new { message = "Error." });
         }
 
         [HttpDelete("{id}")]
