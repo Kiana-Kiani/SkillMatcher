@@ -2,21 +2,19 @@ using SkillMatcher.Repository;
 using SkillMatcher.Repository.Contracts;
 using SkillMatcher.Service;
 using SkillMatcher.Service.Interfaces;
+using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCors(options =>
+
+builder.Services.AddCors(options => options.AddPolicy("CorsPolicy", policy =>
 {
-    options.AddDefaultPolicy(
-        policy =>
-        {
-            policy.WithOrigins("https://skill-matcher-api.liara.run",
-                                "http://skill-matcher-api.liara.run",
-                "https://skill-matcher-api.liara.run/swagger/index.html")
-                           .AllowAnyMethod()
-                            .AllowAnyHeader();
-        });
-});
-// Add services to the container.
+    policy
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .Build();
+}));
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -30,12 +28,21 @@ builder.Services.AddSingleton(typeof(ITestService), typeof(TestService));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseCors("CorsPolicy");
+
+app.Use(async (context, next) =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    context.Response.Headers.TryAdd("Access-Control-Allow-Origin", "*");
+    context.Response.Headers.TryAdd("Access-Control-Request-Method", "*");
+    context.Response.Headers.TryAdd("Access-Control-Request-Headers", "*");
+    context.Response.Headers.TryAdd("Access-Control-Max-Age", "*");
+
+    await next(context);
+});
+
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseCors();
