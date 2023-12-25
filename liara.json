@@ -1,0 +1,14 @@
+{
+  "netcore": {
+    "version": "6.0"
+  },
+  "platform": "netcore",
+  "app": "skill-matcher-api",
+  "port": "80",
+  "disks": [
+    {
+      "name": "disk-03",
+      "mountTo": "/app/"
+    }
+  ]
+}
