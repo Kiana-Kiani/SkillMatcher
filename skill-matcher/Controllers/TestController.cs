@@ -48,7 +48,6 @@ namespace SkillMatcher.Controllers
 
         [HttpDelete("{id}")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
         public IActionResult DeleteTestById(Guid id)
         {
             if (!ModelState.IsValid)
@@ -73,13 +72,13 @@ namespace SkillMatcher.Controllers
             }
 
             var result = testService.UpdateTestById(id, model);
-            if (result == 1)
+            if (result == 1 || result == 0)
             {
                 return Ok(new { message = "Test updated successfully." });
             }
-            else if (result == 0)
+            else if (result == -1)
             {
-                return NotFound("Test not found.");
+                return NotFound("The question was not updated.");
             }
             else
             {

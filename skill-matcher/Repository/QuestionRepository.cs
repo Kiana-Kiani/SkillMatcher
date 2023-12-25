@@ -49,10 +49,10 @@ namespace SkillMatcher.Repository
         {
             var question = new Question();
             question.Options = new List<Option>();
-            var option = new Option();
 
             foreach (var optionDto in questionDto.Options)
             {
+                Option option = new Option();
                 option.OptionText["English"] = optionDto.EnglishOptionText;
                 option.OptionText["Persian"] = optionDto.PersianOptionText;
                 question.Options.Add(option);
@@ -62,12 +62,20 @@ namespace SkillMatcher.Repository
                 .Set(q => q.QuestionText["English"], questionDto.EnglishText)
                 .Set(q => q.Type, questionDto.Type)
                 .Set(q => q.Options, question.Options)
-                .Set(q => q.AnswerCount, question.AnswerCount)
+                .Set(q => q.AnswerCount, questionDto.AnswerCount)
                 .Set(q => q.Level, questionDto.Level);
 
             var filter = Builders<Question>.Filter.Eq(q => q.Id, id);
-            var result = QuestionsCollection.UpdateOne(filter, updateDefinition);
-            return (int)result.ModifiedCount;
+            try
+            {
+                var result = QuestionsCollection.UpdateOne(filter, updateDefinition);
+                return (int)result.ModifiedCount;
+
+            }
+            catch
+            {
+                return -1;
+            }
         }
     }
 }

@@ -28,7 +28,6 @@ namespace SkillMatcher.Controllers
 
         [HttpPost("{testId}")]
      //   [ProducesResponseType(typeof(Guid), 200)]
-
         public IActionResult CreateQuestion(Guid testId, [FromBody] PostAndPutQuestionDto model)
         {
             if (model == null)
@@ -45,7 +44,6 @@ namespace SkillMatcher.Controllers
 
         [HttpDelete("{id}")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
         public IActionResult DeleteQuestionById(Guid id)
         {
             if (!ModelState.IsValid)
@@ -70,13 +68,13 @@ namespace SkillMatcher.Controllers
             }
 
             var result = questionService.UpdateQuestionById(id, questionDto);
-            if (result == 1)
+            if (result == 1 || result == 0)
             {
                 return Ok("Question updated successfully.");
             }
-            else if (result == 0)
+            else if (result == -1)
             {
-                return NotFound("Question not found.");
+                return NotFound("The question was not updated.");
             }
             else
             {

@@ -31,8 +31,8 @@ namespace SkillMatcher.Repository
 
             //try
             //{
-                TestCollection.InsertOne(test);
-                return test;
+            TestCollection.InsertOne(test);
+            return test;
             //}
             //catch
             //{
@@ -52,10 +52,17 @@ namespace SkillMatcher.Repository
                 .Set(q => q.DateTime, DateTime.Now)
                 .Set(q => q.Level, testDto.Level)
                 .Set(q => q.About, testDto.About);
-            var filter = Builders<Test>.Filter.Eq(q => q.Id, id);
 
-            var result = TestCollection.UpdateOne(filter, updateDefinition);
-            return (int)result.ModifiedCount;
+            var filter = Builders<Test>.Filter.Eq(q => q.Id, id);
+            try
+            {
+                var result = TestCollection.UpdateOne(filter, updateDefinition);
+                return (int)result.ModifiedCount;
+            }
+            catch
+            {
+                return -1;
+            }
         }
 
         public Test GetTestById(Guid id)
