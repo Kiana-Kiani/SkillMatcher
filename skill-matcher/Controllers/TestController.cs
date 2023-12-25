@@ -78,7 +78,7 @@ namespace SkillMatcher.Controllers
             }
             else if (result == -1)
             {
-                return NotFound("The question was not updated.");
+                return NotFound("The test was not updated.");
             }
             else
             {
