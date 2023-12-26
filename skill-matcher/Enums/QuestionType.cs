@@ -3,7 +3,8 @@
     public enum QuestionType
     {
         MultipleChoice,
-        Essay
+        Essay,
+        Percent
 
     }
 
