@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using SkillMatcher.DataModel;
 using SkillMatcher.Dto;
 using SkillMatcher.Repository.Contracts;
@@ -27,12 +28,41 @@ namespace SkillMatcher.Repository
                 return true;
             return false;
         }
+
+        public Question GetQuestionById(Guid id)
+        {
+            var filter = Builders<Question>.Filter.Eq(q => q.Id, id);
+            var question = QuestionsCollection.Find(filter).FirstOrDefault();
+            return question;
+        }
+
+
         public List<Question> GetQuestionsByTestId(Guid testId)
         {
             var filter = Builders<Question>.Filter.Eq(q => q.TestId, testId);
             var question = QuestionsCollection.Find(filter).ToList();
             return question;
         }
+
+        public List<Question> GetQuestionsByLevelAndTestId(Guid testId, int level)
+        {
+            try
+            {
+                var filter = new BsonDocument
+                {
+                    { "TestId" ,testId },
+                    { "Level", level }
+                };
+
+                var questions = QuestionsCollection.Find(filter).ToList();
+                return questions;
+            }
+            catch {
+                return null;
+            }
+        }
+
+
         public Question InsertQuestion(Question question)
         {
             try

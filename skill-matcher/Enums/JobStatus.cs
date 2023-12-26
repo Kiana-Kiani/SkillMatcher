@@ -4,7 +4,9 @@
     {
         Student,
         Employee,
-        UnEmployee
+        UnEmployee,
+        Retired
+
     }
 
 }

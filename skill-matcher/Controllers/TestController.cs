@@ -31,19 +31,17 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(Test), 200)]
         public IActionResult CreateTest([FromBody] PostAndPutTestDto model)
         {
             if (model == null)
             {
-                return BadRequest(new { message = "Error." });
+                return BadRequest("Input Is null.");
             }
 
             var test = testService.CreateTest(model);
-     //       if (test. != null)
                 return Ok(test);
-            //else
-            //    return BadRequest(new { message = "Error." });
+
         }
 
         [HttpDelete("{id}")]
@@ -52,13 +50,13 @@ namespace SkillMatcher.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Input Is null.");
             }
 
             if (testService.DeleteTestById(id))
                 return Ok(new { message = "Test deleted successfully." });
             else
-                return BadRequest(new { message = "Error." });
+                return BadRequest("Test was not deleted.");
         }
 
         [HttpPut("{id}")]
@@ -68,7 +66,7 @@ namespace SkillMatcher.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new { message = "Error." });
+                return BadRequest("Input Is null.");
             }
 
             var result = testService.UpdateTestById(id, model);
@@ -82,7 +80,7 @@ namespace SkillMatcher.Controllers
             }
             else
             {
-                return StatusCode(500, "Test update failed.");
+                return BadRequest( "Test update failed.");
             }
         }
     }

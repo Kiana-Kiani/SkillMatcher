@@ -10,7 +10,6 @@ namespace SkillMatcher.Controllers
 
     public class QuestionController : Controller
     {
-
         private readonly IQuestionService questionService;
 
         public QuestionController(IQuestionService questionService)
@@ -19,27 +18,50 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpGet("{testId}")]
-        [ProducesResponseType(typeof(Question), 200)]
+        [ProducesResponseType(typeof(List<Question>), 200)]
         public IActionResult GetQuestionsByTestId(Guid testId)
         {
             var questions = questionService.GetQuestionsByTestId(testId);
             return Ok(questions);
         }
 
+        [HttpGet("ById/{id}")]
+        [ProducesResponseType(typeof(Question), 200)]
+        public IActionResult GetQuestionById(Guid id)
+        {
+            var questions = questionService.GetQuestionById(id);
+            return Ok(questions);
+        }
+
+        [HttpGet("ByLevelAndTestId/{testId}/{level}")]
+        [ProducesResponseType(typeof(Question), 200)]
+        public IActionResult GetQuestionByLevelAndTestId(Guid testId, int level)
+        {
+            var questions = questionService.GetQuestionsByLevelAndTestId(testId, level);
+            if(questions.Count() != 0)
+            {
+                return Ok(questions);
+            }
+            else
+            {
+                return BadRequest("There is No Question.");
+            }        
+        }
+
         [HttpPost("{testId}")]
-     //   [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(Question), 200)]
         public IActionResult CreateQuestion(Guid testId, [FromBody] PostAndPutQuestionDto model)
         {
             if (model == null)
             {
-                return BadRequest(new { message = "Error." });
+                return BadRequest("Input Is null.");
             }
 
             var question = questionService.CreateQuestion(testId, model);
             if (question != null)
                 return Ok(question);
             else
-                return BadRequest(new { message = "Error." });
+                return BadRequest("Question was not created.");
         }
 
         [HttpDelete("{id}")]
@@ -48,13 +70,13 @@ namespace SkillMatcher.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest("Input Is null.");
             }
 
             if (questionService.DeleteQuestionById(id))
-                return Ok(new { message = "Question deleted successfully." });
+                return Ok( "Question deleted successfully.");
             else
-                return BadRequest("Error.");
+                return BadRequest("Question was not deleted.");
         }
 
         [HttpPut("{id}")]
@@ -64,7 +86,7 @@ namespace SkillMatcher.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Error.");
+                return BadRequest("Input Is null.");
             }
 
             var result = questionService.UpdateQuestionById(id, questionDto);

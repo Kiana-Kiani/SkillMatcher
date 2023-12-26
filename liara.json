@@ -7,7 +7,7 @@
   "port": "80",
   "disks": [
     {
-      "name": "disk-03",
+      "name": "disk-04",
       "mountTo": "/app/"
     }
   ]
