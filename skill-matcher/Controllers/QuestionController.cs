@@ -34,8 +34,8 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpGet("ByLevelAndTestId/{testId}/{level}")]
-        [ProducesResponseType(typeof(Question), 200)]
-        public IActionResult GetQuestionByLevelAndTestId(Guid testId, int level)
+        [ProducesResponseType(typeof(List<Question>), 200)]
+        public IActionResult GetQuestionsByLevelAndTestId(Guid testId, int level)
         {
             var questions = questionService.GetQuestionsByLevelAndTestId(testId, level);
             if(questions.Count() != 0)
