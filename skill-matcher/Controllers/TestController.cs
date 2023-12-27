@@ -6,7 +6,7 @@ using SkillMatcher.Service.Interfaces;
 namespace SkillMatcher.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class TestController : Controller
     {
         private readonly ITestService testService;
@@ -38,7 +38,6 @@ namespace SkillMatcher.Controllers
             {
                 return BadRequest("Input Is null.");
             }
-
             var test = testService.CreateTest(model);
                 return Ok(test);
 

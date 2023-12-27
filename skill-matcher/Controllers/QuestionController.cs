@@ -6,7 +6,7 @@ using SkillMatcher.Service.Interfaces;
 namespace SkillMatcher.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
 
     public class QuestionController : Controller
     {
@@ -25,7 +25,8 @@ namespace SkillMatcher.Controllers
             return Ok(questions);
         }
 
-        [HttpGet("ById/{id}")]
+        [HttpGet]
+        [Route("{id}")]
         [ProducesResponseType(typeof(Question), 200)]
         public IActionResult GetQuestionById(Guid id)
         {
@@ -33,19 +34,19 @@ namespace SkillMatcher.Controllers
             return Ok(questions);
         }
 
-        [HttpGet("ByLevelAndTestId/{testId}/{level}")]
+        [HttpGet("{testId}/{level}")]
         [ProducesResponseType(typeof(List<Question>), 200)]
         public IActionResult GetQuestionsByLevelAndTestId(Guid testId, int level)
         {
             var questions = questionService.GetQuestionsByLevelAndTestId(testId, level);
-            if(questions.Count() != 0)
+            if (questions.Count() != 0)
             {
                 return Ok(questions);
             }
             else
             {
                 return BadRequest("There is No Question.");
-            }        
+            }
         }
 
         [HttpPost("{testId}")]
@@ -74,7 +75,7 @@ namespace SkillMatcher.Controllers
             }
 
             if (questionService.DeleteQuestionById(id))
-                return Ok( "Question deleted successfully.");
+                return Ok("Question deleted successfully.");
             else
                 return BadRequest("Question was not deleted.");
         }

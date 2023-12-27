@@ -26,6 +26,10 @@ builder.Services.AddSingleton(typeof(ITestRepository), typeof(TestRepository));
 builder.Services.AddSingleton(typeof(IQuestionService), typeof(QuestionService));
 builder.Services.AddSingleton(typeof(ITestService), typeof(TestService));
 
+builder.Services.AddSingleton(typeof(IQuestionerService), typeof(QuestionerService));
+builder.Services.AddSingleton(typeof(IQuestionerRepository), typeof(QuestionerRepository));
+
+
 var app = builder.Build();
 
 app.UseCors("CorsPolicy");
