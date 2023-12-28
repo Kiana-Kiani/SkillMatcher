@@ -26,22 +26,6 @@ namespace SkillMatcher.Repository
         }
         public Guid InsertQuestionAnswer( QuestionAndAnswerDto questionAndAnswerDto)
         {
-            // Questioner questioner,
-            //var filter = new BsonDocument
-            //{
-            //    { "Id" ,questioner.Id },
-            //    { "UserId", questioner.UserId }
-            //};
-
-            //var newlist = new List<QuestionerContent> {
-            //    new QuestionerContent() {
-            //        Answers= questionAndAnswerDto.Answers,
-            //        Questions= questionAndAnswerDto.Questions }  
-            //};
-
-
-            //   var result = Builders<BsonDocument>.Update.PushEach("Chat", newlist);
-
             try
             {
                 var filter = Builders<Questioner>.Filter.And(
@@ -63,6 +47,7 @@ namespace SkillMatcher.Repository
                            .Set(q => q.Chat, questionerdb.Chat);
 
                 var result = QuestionerCollection.UpdateOne(filter, updateDefinition);
+
                 if (result.MatchedCount == 1 || result.ModifiedCount == 1)
                 {
                     return questionAndAnswerDto.Id;

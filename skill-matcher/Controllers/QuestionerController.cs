@@ -27,7 +27,7 @@ namespace SkillMatcher.Controllers
         //    return Ok(questionerId);
         //}
         [HttpPut]
-        public IActionResult InsertQuestionAnswer([FromBody] QuestionAndAnswerDto questionAndAnswerDto)
+        public IActionResult InsertQuestionAnswer([FromBody] QuestionAndAnswerFromUiDto questionAndAnswerDto)
         {
 
             var questionerId = questionerService.InsertQuestionAnswer(questionAndAnswerDto);

@@ -14,7 +14,7 @@ namespace SkillMatcher.Service
         {
             this.questionerRepository = questionerRepository;
         }
-        public Guid InsertQuestionAnswer(QuestionAndAnswerDto questionAndAnswerDto)
+        public Guid InsertQuestionAnswer(QuestionAndAnswerFromUiDto questionAndAnswerFromUiDto)
         {
             //var questioner = new Questioner();
             //questioner.Id = questionAndAnswerDto.Id;
@@ -27,21 +27,33 @@ namespace SkillMatcher.Service
             //questionerContent.Answers = questionAndAnswerDto.Answers;
 
             //questioner.Chat.Add(questionerContent);
+            QuestionAndAnswerDto questionAndAnswerDto = new QuestionAndAnswerDto();
+
+            questionAndAnswerDto.Answers = questionAndAnswerFromUiDto.Answers;
+            questionAndAnswerDto.UserId = questionAndAnswerFromUiDto.UserId;
+            questionAndAnswerDto.Id = questionAndAnswerFromUiDto.Id;
+
+            questionAndAnswerDto.Questions = new Question();
+            questionAndAnswerDto.Questions.AnswerCount = questionAndAnswerFromUiDto.Questions.AnswerCount;
+            questionAndAnswerDto.Questions.Options = questionAndAnswerFromUiDto.Questions.Options;
+            questionAndAnswerDto.Questions.QuestionText = questionAndAnswerFromUiDto.Questions.QuestionText;
+            questionAndAnswerDto.Questions.TestId = questionAndAnswerFromUiDto.Questions.TestId;
+            questionAndAnswerDto.Questions.Level = questionAndAnswerFromUiDto.Questions.Level;
+            questionAndAnswerDto.Questions.Type = questionAndAnswerFromUiDto.Questions.Type.ToString();
+            questionAndAnswerDto.Questions.Id = questionAndAnswerFromUiDto.Questions.Id;
 
             return questionerRepository.InsertQuestionAnswer(questionAndAnswerDto);
         }
         public Guid InsertUserId(Guid userId)
         {
-
-
             var questioner = new Questioner();
 
             questioner.UserId = userId;
             questioner.StartedDateTime = DateTime.Now;
             questioner.Chat = new List<QuestionerContent> { new QuestionerContent() };
+            questioner.Result = new List<QuestionerResult> { new QuestionerResult() };
 
             return questionerRepository.InsertUserId(questioner);
-
         }
 
 

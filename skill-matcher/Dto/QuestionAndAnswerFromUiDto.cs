@@ -2,11 +2,11 @@
 
 namespace SkillMatcher.Dto
 {
-    public class QuestionAndAnswerDto
+    public class QuestionAndAnswerFromUiDto
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public Question Questions { get; set; } = new Question();
+        public QuestionTypeForUi Questions { get; set; }
         public string Answers { get; set; }
     }
 }

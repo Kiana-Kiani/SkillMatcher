@@ -6,7 +6,7 @@ namespace SkillMatcher.Service.Interfaces
 {
     public interface IQuestionerService
     {
-        public Guid InsertQuestionAnswer(QuestionAndAnswerDto questionAndAnswerDto);
+        public Guid InsertQuestionAnswer(QuestionAndAnswerFromUiDto questionAndAnswerDto);
         public Guid InsertUserId(Guid userId);
     }
 }

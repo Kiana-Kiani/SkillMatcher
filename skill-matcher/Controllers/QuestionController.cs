@@ -91,13 +91,13 @@ namespace SkillMatcher.Controllers
             }
 
             var result = questionService.UpdateQuestionById(id, questionDto);
-            if (result == 1 || result == 0)
+            if (result == 1)
             {
                 return Ok("Question updated successfully.");
             }
-            else if (result == -1)
+            else if ( result == 0)
             {
-                return NotFound("The question was not updated.");
+                return NotFound("The question was not Founded..");
             }
             else
             {

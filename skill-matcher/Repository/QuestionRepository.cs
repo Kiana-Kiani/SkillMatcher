@@ -57,7 +57,8 @@ namespace SkillMatcher.Repository
                 var questions = QuestionsCollection.Find(filter).ToList();
                 return questions;
             }
-            catch {
+            catch
+            {
                 return null;
             }
         }
@@ -83,14 +84,16 @@ namespace SkillMatcher.Repository
             foreach (var optionDto in questionDto.Options)
             {
                 Option option = new Option();
-                option.OptionText["English"] = optionDto.EnglishOptionText;
-                option.OptionText["Persian"] = optionDto.PersianOptionText;
+                option.Persian = optionDto.Persian;
+                option.English = optionDto.English;
+                //option.OptionText["English"] = optionDto.English;
+                //option.OptionText["Persian"] = optionDto.Persian;
                 question.Options.Add(option);
             }
             var updateDefinition = Builders<Question>.Update
-                .Set(q => q.QuestionText["Persian"], questionDto.PersianText)
-                .Set(q => q.QuestionText["English"], questionDto.EnglishText)
-                .Set(q => q.Type, questionDto.Type)
+                .Set(q => q.QuestionText.Persian, questionDto.QuestionText.Persian)
+                .Set(q => q.QuestionText.English, questionDto.QuestionText.English)
+                .Set(q => q.Type, questionDto.Type.ToString())
                 .Set(q => q.Options, question.Options)
                 .Set(q => q.AnswerCount, questionDto.AnswerCount)
                 .Set(q => q.Level, questionDto.Level);
@@ -99,8 +102,10 @@ namespace SkillMatcher.Repository
             try
             {
                 var result = QuestionsCollection.UpdateOne(filter, updateDefinition);
-                return (int)result.ModifiedCount;
-
+                if (result.ModifiedCount == 1 || result.MatchedCount == 1)
+                { return 1; }
+                else
+                    return 0;
             }
             catch
             {
