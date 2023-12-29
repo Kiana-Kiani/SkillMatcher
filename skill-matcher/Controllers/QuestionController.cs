@@ -30,8 +30,12 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(typeof(Question), 200)]
         public IActionResult GetQuestionById(Guid id)
         {
-            var questions = questionService.GetQuestionById(id);
-            return Ok(questions);
+            var question = questionService.GetQuestionById(id);
+            if (question == null)
+            {
+                return BadRequest("Question not found");
+            }
+            return Ok(question);
         }
 
         [HttpGet("{testId}/{level}")]

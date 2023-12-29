@@ -74,6 +74,10 @@ namespace SkillMatcher.Service
         public QuestionTypeForUi GetQuestionById(Guid id)
         {
             Question question = questionRepository.GetQuestionById(id);
+            if (question == null)
+            {
+                return null;
+            }
             QuestionTypeForUi questionTypeForUi = MappQuestionToQuestionTypeForUi(question);
             return questionTypeForUi;
         }

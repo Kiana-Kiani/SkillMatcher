@@ -33,6 +33,10 @@ namespace SkillMatcher.Service
         public TestDto GetTestById(Guid id)
         {
             var test = testRepository.GetTestById(id);
+            if (test == null)
+            {
+                return null;
+            }
             var testDto = new TestDto()
             {
                 Id = test.Id,

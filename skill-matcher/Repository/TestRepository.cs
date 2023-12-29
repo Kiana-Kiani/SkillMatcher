@@ -57,7 +57,9 @@ namespace SkillMatcher.Repository
             try
             {
                 var result = TestCollection.UpdateOne(filter, updateDefinition);
-                return (int)result.ModifiedCount;
+                if(result.ModifiedCount ==1 || result.MatchedCount ==1)
+                   return 1;
+                else return 0;
             }
             catch
             {

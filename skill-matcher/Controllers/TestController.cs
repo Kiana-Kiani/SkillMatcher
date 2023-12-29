@@ -27,7 +27,12 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(typeof(Test), 200)]
         public IActionResult GetTestById(Guid id)
         {
-            return Ok(testService.GetTestById(id));
+            var result = testService.GetTestById(id);
+            if (result == null)
+            {
+                return BadRequest("Test not found");
+            }
+            return Ok(result);
         }
 
         [HttpPost]
@@ -69,13 +74,9 @@ namespace SkillMatcher.Controllers
             }
 
             var result = testService.UpdateTestById(id, model);
-            if (result == 1 || result == 0)
+            if (result == 1 )
             {
-                return Ok(new { message = "Test updated successfully." });
-            }
-            else if (result == -1)
-            {
-                return NotFound("The test was not updated.");
+                return Ok( "Test updated successfully." );
             }
             else
             {
