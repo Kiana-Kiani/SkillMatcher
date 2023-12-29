@@ -30,8 +30,8 @@ builder.Services.AddSingleton(typeof(IQuestionerService), typeof(QuestionerServi
 builder.Services.AddSingleton(typeof(IQuestionerRepository), typeof(QuestionerRepository));
 
 
-builder.Services.AddSingleton(typeof(IUserService), typeof(UserService));
-builder.Services.AddSingleton(typeof(IUserRepository), typeof(UserRepository));
+//builder.Services.AddSingleton(typeof(IUserService), typeof(UserService));
+//builder.Services.AddSingleton(typeof(IUserRepository), typeof(UserRepository));
 
 
 var app = builder.Build();
