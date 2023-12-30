@@ -1,4 +1,4 @@
-﻿namespace SkillMatcher.Dto
+﻿namespace SkillMatcher.Dto.QuestionOption
 {
     public class OptionDto
     {

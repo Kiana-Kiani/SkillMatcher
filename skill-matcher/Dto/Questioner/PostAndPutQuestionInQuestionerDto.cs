@@ -1,18 +1,19 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using SkillMatcher.DataModel;
+using SkillMatcher.Dto.QuestionOption;
 using SkillMatcher.Enums;
 
-namespace SkillMatcher.Dto
+namespace SkillMatcher.Dto.Questioner
 {
-    public class QuestionTypeForUi
+    public class PostAndPutQuestionInQuestionerDto
     {
-        [BsonId]
         public Guid Id { get; set; } // MongoDB-generated ID
         public Guid TestId { get; set; } // Foreign key to Test
-                                         //   public Dictionary<string, string> QuestionText { get; set; } = new Dictionary<string, string>();
+                                         //public Dictionary<string, string> QuestionText { get; set; } = new Dictionary<string, string>() 
+                                         //{
 
-        public QuestionDictDto QuestionText { get; set; }
-
+        //};
+        public QuestionDictDto QuestionText { get; set; } = new QuestionDictDto();
 
         public QuestionType Type { get; set; }
         public int Level { get; set; }

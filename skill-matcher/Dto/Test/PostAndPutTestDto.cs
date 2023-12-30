@@ -1,8 +1,8 @@
-﻿namespace SkillMatcher.Dto
+﻿namespace SkillMatcher.Dto.Test
 {
     public class PostAndPutTestDto
     {
-      //  public ObjectId Id { get; set; }
+        //  public ObjectId Id { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }
         public string About { get; set; }

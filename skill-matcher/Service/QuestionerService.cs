@@ -1,5 +1,7 @@
-﻿using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+﻿using Microsoft.AspNetCore.Mvc;
+using SkillMatcher.DataModel;
+using SkillMatcher.Dto.Questioner;
+using SkillMatcher.Dto.QuestionOption;
 using SkillMatcher.Repository;
 using SkillMatcher.Repository.Contracts;
 using SkillMatcher.Service.Interfaces;
@@ -44,6 +46,7 @@ namespace SkillMatcher.Service
 
             return questionerRepository.InsertQuestionAnswer(questionAndAnswerDto);
         }
+
         public Guid InsertUserId(Guid userId)
         {
             var questioner = new Questioner();

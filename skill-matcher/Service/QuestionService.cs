@@ -1,5 +1,5 @@
 ﻿using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.QuestionOption;
 using SkillMatcher.Enums;
 using SkillMatcher.Repository.Contracts;
 using SkillMatcher.Service.Interfaces;

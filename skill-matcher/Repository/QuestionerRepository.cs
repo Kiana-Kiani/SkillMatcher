@@ -1,7 +1,9 @@
+﻿using Microsoft.AspNetCore.Mvc;
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.Questioner;
+using SkillMatcher.Dto.QuestionOption;
 using SkillMatcher.Repository.Contracts;
 using System.Reflection.Emit;
 using System.Security.Cryptography;
@@ -24,7 +26,7 @@ namespace SkillMatcher.Repository
             db = client.GetDatabase("JobOffererTest");
             QuestionerCollection = db.GetCollection<Questioner>("Questioners");
         }
-        public Guid InsertQuestionAnswer( QuestionAndAnswerDto questionAndAnswerDto)
+        public Guid InsertQuestionAnswer(QuestionAndAnswerDto questionAndAnswerDto)
         {
             try
             {
@@ -34,13 +36,19 @@ namespace SkillMatcher.Repository
                       );
 
                 Questioner questionerdb = QuestionerCollection.Find(filter).FirstOrDefault();
+                if (questionerdb == null)
+                {
+                    return Guid.Empty;
+                }
 
                 QuestionerContent newlist = new QuestionerContent()
                 {
                     Questions = questionAndAnswerDto.Questions,
                     Answers = questionAndAnswerDto.Answers
                 };
-
+                if (questionerdb.Chat.Count() == 1 && questionerdb.Chat[0] == null)
+                    questionerdb.Chat[0] = newlist;
+                else
                 questionerdb.Chat.Add(newlist);
 
                 var updateDefinition = Builders<Questioner>.Update
@@ -62,6 +70,7 @@ namespace SkillMatcher.Repository
                 return Guid.Empty;
             }
         }
+
 
         public Guid InsertUserId(Questioner questioner)
         {

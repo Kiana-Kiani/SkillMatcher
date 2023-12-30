@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.QuestionOption;
 using SkillMatcher.Repository.Contracts;
 using static System.Net.Mime.MediaTypeNames;
 

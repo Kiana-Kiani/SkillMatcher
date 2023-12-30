@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson;
 using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.Test;
 
 namespace SkillMatcher.Service.Interfaces
 {

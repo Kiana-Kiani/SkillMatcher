@@ -2,10 +2,10 @@
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Bson.Serialization;
 using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
 using SkillMatcher.Repository.Contracts;
 using SkillMatcher.Service.Interfaces;
 using static System.Net.Mime.MediaTypeNames;
+using SkillMatcher.Dto.Test;
 
 namespace SkillMatcher.Service
 {

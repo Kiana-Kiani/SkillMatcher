@@ -2,6 +2,7 @@
 {
     public enum JobStatus
     {
+        NotSelected,
         Student,
         Employee,
         UnEmployee,

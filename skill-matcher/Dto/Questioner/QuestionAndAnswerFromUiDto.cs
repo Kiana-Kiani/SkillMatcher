@@ -1,6 +1,7 @@
 ﻿using SkillMatcher.DataModel;
+using SkillMatcher.Dto.QuestionOption;
 
-namespace SkillMatcher.Dto
+namespace SkillMatcher.Dto.Questioner
 {
     public class QuestionAndAnswerFromUiDto
     {

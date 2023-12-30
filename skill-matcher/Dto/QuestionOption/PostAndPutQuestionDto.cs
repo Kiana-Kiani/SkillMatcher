@@ -1,13 +1,13 @@
 ﻿using SkillMatcher.Enums;
 
-namespace SkillMatcher.Dto
+namespace SkillMatcher.Dto.QuestionOption
 {
     public class PostAndPutQuestionDto
     {
         //   public ObjectId Id { get; set; }
         //public string English { get; set; }
         //public string Persian { get; set; }
-        public QuestionDictDto QuestionText { get; set; } 
+        public QuestionDictDto QuestionText { get; set; }
 
         public QuestionType Type { get; set; }
         public int Level { get; set; }

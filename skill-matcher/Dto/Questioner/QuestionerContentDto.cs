@@ -1,6 +1,6 @@
 ﻿using SkillMatcher.DataModel;
 
-namespace SkillMatcher.Dto
+namespace SkillMatcher.Dto.Questioner
 {
     public class QuestionerContentDto
     {

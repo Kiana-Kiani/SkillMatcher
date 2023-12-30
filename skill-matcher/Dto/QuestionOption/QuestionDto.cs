@@ -1,6 +1,6 @@
 ﻿using SkillMatcher.Enums;
 
-namespace SkillMatcher.Dto
+namespace SkillMatcher.Dto.QuestionOption
 {
     public class QuestionDto
     {

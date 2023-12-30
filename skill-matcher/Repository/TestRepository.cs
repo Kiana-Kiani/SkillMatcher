@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.Test;
 using SkillMatcher.Repository.Contracts;
 
 namespace SkillMatcher.Repository

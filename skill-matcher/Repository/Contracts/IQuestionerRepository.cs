@@ -1,5 +1,7 @@
-﻿using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+﻿using Microsoft.AspNetCore.Mvc;
+using SkillMatcher.DataModel;
+using SkillMatcher.Dto.Questioner;
+using SkillMatcher.Dto.QuestionOption;
 
 namespace SkillMatcher.Repository.Contracts
 {

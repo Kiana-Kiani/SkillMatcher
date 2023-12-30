@@ -2,7 +2,7 @@
 {
     public enum Education
     {
-
+        NotSelected,
         Uneducated,
         Undergraduate,
         Graduate,

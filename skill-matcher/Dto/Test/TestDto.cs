@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace SkillMatcher.Dto
+namespace SkillMatcher.Dto.Test
 {
     public class TestDto
     {

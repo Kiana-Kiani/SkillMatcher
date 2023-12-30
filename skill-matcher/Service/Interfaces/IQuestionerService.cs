@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.Questioner;
 
 namespace SkillMatcher.Service.Interfaces
 {

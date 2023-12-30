@@ -1,5 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.QuestionOption;
 using SkillMatcher.Enums;
 
 namespace SkillMatcher.DataModel

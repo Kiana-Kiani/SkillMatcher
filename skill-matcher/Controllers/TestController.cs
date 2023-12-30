@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.Test;
 using SkillMatcher.Service.Interfaces;
 
 namespace SkillMatcher.Controllers
@@ -65,7 +65,6 @@ namespace SkillMatcher.Controllers
 
         [HttpPut("{id}")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
         public IActionResult UpdateTestById(Guid id, [FromBody] PostAndPutTestDto model)
         {
             if (!ModelState.IsValid)

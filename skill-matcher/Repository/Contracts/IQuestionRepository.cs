@@ -1,5 +1,5 @@
 ﻿using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.QuestionOption;
 
 namespace SkillMatcher.Repository.Contracts
 {

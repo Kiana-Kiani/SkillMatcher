@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillMatcher.DataModel;
-using SkillMatcher.Dto;
+using SkillMatcher.Dto.QuestionOption;
 using SkillMatcher.Service.Interfaces;
 
 namespace SkillMatcher.Controllers
@@ -57,7 +57,9 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(typeof(Question), 200)]
         public IActionResult CreateQuestion(Guid testId, [FromBody] PostAndPutQuestionDto model)
         {
-            if (model == null)
+            //if (!ModelState.IsValid)
+                //return BadRequest("model is invalid.");
+                if (model == null)
             {
                 return BadRequest("Input Is null.");
             }
