@@ -20,7 +20,7 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(typeof(User), 200)]
         public IActionResult InsertFirstInfoBot(UserFirstInfoBotDto userFirstInfoBotDto)
         {
-            var userFirstInfoBot = UserService.InsertFirstInfoBot(userFirstInfoBotDto);
+            User userFirstInfoBot = UserService.InsertFirstInfoBot(userFirstInfoBotDto);
             if (userFirstInfoBot == null)
             {
                 return BadRequest("This TelegramID already exists.");
@@ -29,9 +29,10 @@ namespace SkillMatcher.Controllers
         }
 
         [HttpGet("{telegrmId}")]
+        [ProducesResponseType(typeof(User), 200)]
         public IActionResult GetUserInfoBot(string telegrmId)
         {
-            var UserInfo = UserService.GetUserInfoBot(telegrmId);
+            var UserInfo = UserService.GetUserInfoBot(telegrmId.ToLower());
             if (UserInfo == null)
             {
                 return NotFound("Not Found.");

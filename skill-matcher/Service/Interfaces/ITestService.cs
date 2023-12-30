@@ -6,8 +6,8 @@ namespace SkillMatcher.Service.Interfaces
 {
     public interface ITestService
     {
-        List<TestDto> GetTestList();
-        TestDto GetTestById(Guid id);
+        List<Test> GetTestList();
+        Test GetTestById(Guid id);
 
         Test CreateTest(PostAndPutTestDto testDto);
         bool DeleteTestById(Guid id);

@@ -3,7 +3,6 @@ using MongoDB.Driver;
 using SkillMatcher.DataModel;
 using SkillMatcher.Dto.QuestionOption;
 using SkillMatcher.Repository.Contracts;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SkillMatcher.Repository
 {
@@ -32,17 +31,16 @@ namespace SkillMatcher.Repository
         public Question GetQuestionById(Guid id)
         {
             var filter = Builders<Question>.Filter.Eq(q => q.Id, id);
-            var question = QuestionsCollection.Find(filter).FirstOrDefault();
-    
+            Question question = QuestionsCollection.Find(filter).FirstOrDefault();
+
             return question;
         }
-
 
         public List<Question> GetQuestionsByTestId(Guid testId)
         {
             var filter = Builders<Question>.Filter.Eq(q => q.TestId, testId);
-            var question = QuestionsCollection.Find(filter).ToList();
-            return question;
+            List<Question> questions = QuestionsCollection.Find(filter).ToList();
+            return questions;
         }
 
         public List<Question> GetQuestionsByLevelAndTestId(Guid testId, int level)
@@ -55,7 +53,7 @@ namespace SkillMatcher.Repository
                     { "Level", level }
                 };
 
-                var questions = QuestionsCollection.Find(filter).ToList();
+                List<Question> questions = QuestionsCollection.Find(filter).ToList();
                 return questions;
             }
             catch
@@ -63,7 +61,6 @@ namespace SkillMatcher.Repository
                 return null;
             }
         }
-
 
         public Question InsertQuestion(Question question)
         {
@@ -79,25 +76,23 @@ namespace SkillMatcher.Repository
         }
         public int UpdateQuestionById(Guid id, PostAndPutQuestionDto questionDto)
         {
-            var question = new Question();
-            question.Options = new List<Option>();
-
-            foreach (var optionDto in questionDto.Options)
-            {
-                Option option = new Option();
-                option.Persian = optionDto.Persian;
-                option.English = optionDto.English;
-                //option.OptionText["English"] = optionDto.English;
-                //option.OptionText["Persian"] = optionDto.Persian;
-                question.Options.Add(option);
-            }
+            // var question = new Question();
+            //  question.Options = new List<Option>();
+            // question.Options = questionDto.Options;
+            //foreach (var optionDto in questionDto.Options)
+            //{
+            //    Option option = new Option();
+            //    option.Persian = optionDto.Persian;
+            //    option.English = optionDto.English;
+            //    question.Options.Add(option);
+            //}
             var updateDefinition = Builders<Question>.Update
-                .Set(q => q.QuestionText.Persian, questionDto.QuestionText.Persian)
-                .Set(q => q.QuestionText.English, questionDto.QuestionText.English)
-                .Set(q => q.Type, questionDto.Type.ToString())
-                .Set(q => q.Options, question.Options)
-                .Set(q => q.AnswerCount, questionDto.AnswerCount)
-                .Set(q => q.Level, questionDto.Level);
+              .Set(q => q.QuestionText.Persian, questionDto.QuestionText.Persian)
+              .Set(q => q.QuestionText.English, questionDto.QuestionText.English)
+              .Set(q => q.Type, questionDto.Type)
+              .Set(q => q.Options, questionDto.Options)
+              .Set(q => q.AnswerCount, questionDto.AnswerCount)
+              .Set(q => q.Level, questionDto.Level);
 
             var filter = Builders<Question>.Filter.Eq(q => q.Id, id);
             try

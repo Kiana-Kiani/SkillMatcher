@@ -20,43 +20,34 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(typeof(List<Test>), 200)]
         public IActionResult GetTestList()
         {
-            return Ok(testService.GetTestList());
+            List<Test> testList = testService.GetTestList();
+            return Ok(testList);
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Test), 200)]
         public IActionResult GetTestById(Guid id)
         {
-            var result = testService.GetTestById(id);
-            if (result == null)
+            Test test = testService.GetTestById(id);
+            if (test == null)
             {
                 return BadRequest("Test not found");
             }
-            return Ok(result);
+            return Ok(test);
         }
 
         [HttpPost]
         [ProducesResponseType(typeof(Test), 200)]
-        public IActionResult CreateTest([FromBody] PostAndPutTestDto model)
+        public IActionResult CreateTest([FromBody] PostAndPutTestDto testDto)
         {
-            if (model == null)
-            {
-                return BadRequest("Input Is null.");
-            }
-            var test = testService.CreateTest(model);
-                return Ok(test);
-
+            Test test = testService.CreateTest(testDto);
+            return Ok(test);
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(200)]
         public IActionResult DeleteTestById(Guid id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Input Is null.");
-            }
-
             if (testService.DeleteTestById(id))
                 return Ok(new { message = "Test deleted successfully." });
             else
@@ -65,21 +56,16 @@ namespace SkillMatcher.Controllers
 
         [HttpPut("{id}")]
         [ProducesResponseType(200)]
-        public IActionResult UpdateTestById(Guid id, [FromBody] PostAndPutTestDto model)
+        public IActionResult UpdateTestById(Guid id, [FromBody] PostAndPutTestDto testDto)
         {
-            if (!ModelState.IsValid)
+            var result = testService.UpdateTestById(id, testDto);
+            if (result == 1)
             {
-                return BadRequest("Input Is null.");
-            }
-
-            var result = testService.UpdateTestById(id, model);
-            if (result == 1 )
-            {
-                return Ok( "Test updated successfully." );
+                return Ok("Test updated successfully.");
             }
             else
             {
-                return BadRequest( "Test update failed.");
+                return BadRequest("Test update failed.");
             }
         }
     }

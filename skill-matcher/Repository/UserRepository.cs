@@ -21,6 +21,7 @@ namespace SkillMatcher.Repository
 
         public User InsertFirstInfoBot(User user)
         {
+            user.TelegramId = user.TelegramId.ToLower();
             var filter = Builders<User>.Filter.Eq(u => u.TelegramId, user.TelegramId);
             var userWithTelegramId = UserCollection.Find(filter).FirstOrDefault();
 
@@ -42,9 +43,9 @@ namespace SkillMatcher.Repository
                 var filter = Builders<User>.Filter.Eq(q => q.TelegramId, telegrmId);
                 var user = UserCollection.Find(filter).FirstOrDefault();
                 return user;
-
             }
-            catch {
+            catch
+            {
                 return null;
             }
         }

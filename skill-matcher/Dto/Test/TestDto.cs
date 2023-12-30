@@ -1,15 +1,15 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿//using MongoDB.Bson.Serialization.Attributes;
 
-namespace SkillMatcher.Dto.Test
-{
-    public class TestDto
-    {
-        [BsonId]
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public int Level { get; set; }
-        public string About { get; set; }
-        public DateTime DateTime { get; set; }
+//namespace SkillMatcher.Dto.Test
+//{
+//    public class TestDto
+//    {
+//        [BsonId]
+//        public Guid Id { get; set; }
+//        public string Name { get; set; }
+//        public int Level { get; set; }
+//        public string About { get; set; }
+//        public DateTime DateTime { get; set; }
 
-    }
-}
+//    }
+//}

@@ -1,5 +1,4 @@
 ﻿using SkillMatcher.DataModel;
-
 namespace SkillMatcher.Dto.QuestionOption
 {
     public class QuestionAndAnswerDto

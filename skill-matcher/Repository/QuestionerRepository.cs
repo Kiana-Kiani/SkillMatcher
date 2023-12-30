@@ -2,16 +2,11 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using SkillMatcher.DataModel;
-using SkillMatcher.Dto.Questioner;
 using SkillMatcher.Dto.QuestionOption;
 using SkillMatcher.Repository.Contracts;
-using System.Reflection.Emit;
-using System.Security.Cryptography;
 
 namespace SkillMatcher.Repository
 {
-
-
     public class QuestionerRepository : IQuestionerRepository
     {
         private readonly IMongoDatabase db;
@@ -46,7 +41,7 @@ namespace SkillMatcher.Repository
                     Questions = questionAndAnswerDto.Questions,
                     Answers = questionAndAnswerDto.Answers
                 };
-                if (questionerdb.Chat.Count() == 1 && questionerdb.Chat[0] == null)
+                if (questionerdb.Chat.Count() == 1 && questionerdb.Chat[0].Answers == null && questionerdb.Chat[0].Questions.TestId == Guid.Empty)
                     questionerdb.Chat[0] = newlist;
                 else
                 questionerdb.Chat.Add(newlist);
@@ -70,7 +65,6 @@ namespace SkillMatcher.Repository
                 return Guid.Empty;
             }
         }
-
 
         public Guid InsertUserId(Questioner questioner)
         {

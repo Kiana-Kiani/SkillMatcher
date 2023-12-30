@@ -14,8 +14,8 @@ namespace SkillMatcher.DataModel
 
     public class QuestionerContent
     {
-        public Question Questions { get; set; }  = new Question();
-        public string Answers { get; set; } 
+        public Question Questions { get; set; } = new Question();
+        public string Answers { get; set; }
     }
 
     public class QuestionerResult

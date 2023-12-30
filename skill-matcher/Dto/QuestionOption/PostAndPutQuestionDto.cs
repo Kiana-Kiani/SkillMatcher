@@ -1,4 +1,5 @@
-﻿using SkillMatcher.Enums;
+﻿using SkillMatcher.DataModel;
+using SkillMatcher.Enums;
 
 namespace SkillMatcher.Dto.QuestionOption
 {
@@ -8,10 +9,9 @@ namespace SkillMatcher.Dto.QuestionOption
         //public string English { get; set; }
         //public string Persian { get; set; }
         public QuestionDictDto QuestionText { get; set; }
-
         public QuestionType Type { get; set; }
         public int Level { get; set; }
         public int AnswerCount { get; set; }
-        public List<OptionDto> Options { get; set; }
+        public List<Option> Options { get; set; }
     }
 }

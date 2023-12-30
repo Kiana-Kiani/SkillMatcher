@@ -23,7 +23,7 @@ namespace SkillMatcher.Repository
 
         public List<Test> GetTestList()
         {
-            var tests = TestCollection.Find(_ => true).ToList();
+            List<Test> tests = TestCollection.Find(_ => true).ToList();
             return tests;
         }
         public Test CreateTest(Test test)
@@ -49,7 +49,6 @@ namespace SkillMatcher.Repository
         public int UpdateTestById(Guid id, PostAndPutTestDto testDto)
         {
             var updateDefinition = Builders<Test>.Update.Set(q => q.Name, testDto.Name)
-                .Set(q => q.DateTime, DateTime.Now)
                 .Set(q => q.Level, testDto.Level)
                 .Set(q => q.About, testDto.About);
 
@@ -57,8 +56,8 @@ namespace SkillMatcher.Repository
             try
             {
                 var result = TestCollection.UpdateOne(filter, updateDefinition);
-                if(result.ModifiedCount ==1 || result.MatchedCount ==1)
-                   return 1;
+                if (result.ModifiedCount == 1 || result.MatchedCount == 1)
+                    return 1;
                 else return 0;
             }
             catch
@@ -69,7 +68,7 @@ namespace SkillMatcher.Repository
 
         public Test GetTestById(Guid id)
         {
-            var test = TestCollection.Find(q => q.Id == id).FirstOrDefault();
+            Test test = TestCollection.Find(q => q.Id == id).FirstOrDefault();
             return test;
         }
     }

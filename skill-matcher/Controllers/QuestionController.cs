@@ -21,7 +21,7 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(typeof(List<Question>), 200)]
         public IActionResult GetQuestionsByTestId(Guid testId)
         {
-            var questions = questionService.GetQuestionsByTestId(testId);
+            List<Question> questions = questionService.GetQuestionsByTestId(testId);
             return Ok(questions);
         }
 
@@ -30,7 +30,7 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(typeof(Question), 200)]
         public IActionResult GetQuestionById(Guid id)
         {
-            var question = questionService.GetQuestionById(id);
+            Question question = questionService.GetQuestionById(id);
             if (question == null)
             {
                 return BadRequest("Question not found");
@@ -42,7 +42,7 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(typeof(List<Question>), 200)]
         public IActionResult GetQuestionsByLevelAndTestId(Guid testId, int level)
         {
-            var questions = questionService.GetQuestionsByLevelAndTestId(testId, level);
+            List<Question> questions = questionService.GetQuestionsByLevelAndTestId(testId, level);
             if (questions.Count() != 0)
             {
                 return Ok(questions);
@@ -55,16 +55,10 @@ namespace SkillMatcher.Controllers
 
         [HttpPost("{testId}")]
         [ProducesResponseType(typeof(Question), 200)]
-        public IActionResult CreateQuestion(Guid testId, [FromBody] PostAndPutQuestionDto model)
+        public IActionResult CreateQuestion(Guid testId, [FromBody] PostAndPutQuestionDto questionDto)
         {
-            //if (!ModelState.IsValid)
-                //return BadRequest("model is invalid.");
-                if (model == null)
-            {
-                return BadRequest("Input Is null.");
-            }
 
-            var question = questionService.CreateQuestion(testId, model);
+            var question = questionService.CreateQuestion(testId, questionDto);
             if (question != null)
                 return Ok(question);
             else
@@ -91,17 +85,13 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(404)]
         public IActionResult UpdateQuestionById(Guid id, [FromBody] PostAndPutQuestionDto questionDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Input Is null.");
-            }
 
             var result = questionService.UpdateQuestionById(id, questionDto);
             if (result == 1)
             {
                 return Ok("Question updated successfully.");
             }
-            else if ( result == 0)
+            else if (result == 0)
             {
                 return NotFound("The question was not Founded..");
             }

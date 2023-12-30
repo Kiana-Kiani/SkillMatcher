@@ -6,7 +6,7 @@ using SkillMatcher.Service.Interfaces;
 
 namespace SkillMatcher.Service
 {
-    public class UserService: IUserService
+    public class UserService : IUserService
     {
         IUserRepository userRepository;
         public UserService(IUserRepository userRepository)
@@ -21,17 +21,11 @@ namespace SkillMatcher.Service
             user.TelegramId = userFirstInfoDto.TelegramId;
             user.CreatedAt = DateTime.Now;
             user.Name = userFirstInfoDto.Name;
-            user.PreferredLanguage = userFirstInfoDto.PreferredLanguage.ToString();
+            user.PreferredLanguage = userFirstInfoDto.PreferredLanguage;
 
-            user.GenderType = Gender.NotSelected.ToString();
-            user.EducationLevel = Gender.NotSelected.ToString();
-            user.EmploymentStatus = Gender.NotSelected.ToString();
-
-            //user.GenderType = userFirstInfoDto.GenderType.ToString();
-            //user.EducationLevel = userFirstInfoDto.EducationLevel.ToString();
-            //user.EmploymentStatus = userFirstInfoDto.EmploymentStatus.ToString();
-
-            //   return null;
+            user.GenderType = Gender.NotSelected;
+            user.EducationLevel = Education.NotSelected;
+            user.EmploymentStatus = JobStatus.NotSelected;
 
             return userRepository.InsertFirstInfoBot(user);
         }
@@ -39,7 +33,6 @@ namespace SkillMatcher.Service
         public User GetUserInfoBot(string telegrmId)
         {
             return userRepository.GetUserInfoBot(telegrmId);
-
         }
     }
 }

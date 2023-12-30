@@ -17,48 +17,50 @@ namespace SkillMatcher.Service
         {
             this.testRepository = testRepository;
         }
-        public List<TestDto> GetTestList()
+        public List<Test> GetTestList()
         {
-            //BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
-            //BsonDefaults.GuidRepresentationMode = GuidRepresentationMode.V3;
-
-            var tests = testRepository.GetTestList();
-            var testDto = new List<TestDto>();
-            foreach (var item in tests)
+            List<Test> tests = testRepository.GetTestList();
+            foreach (Test test in tests)
             {
-                testDto.Add(new TestDto() { Id = item.Id, Name = item.Name, DateTime = item.DateTime, Level = item.Level, About = item.About });
+                test.DateTime = ConvertToTehranTime(test.DateTime);
+
             }
-            return testDto;
+            // var testDto = new List<TestDto>();
+            //foreach (var item in tests)
+            //{
+            //    testDto.Add(new TestDto() { Id = item.Id, Name = item.Name, DateTime = item.DateTime, Level = item.Level, About = item.About });
+            //}
+            return tests;
         }
-        public TestDto GetTestById(Guid id)
+        public Test GetTestById(Guid id)
         {
-            var test = testRepository.GetTestById(id);
+            Test test = testRepository.GetTestById(id);
+            test.DateTime = ConvertToTehranTime(test.DateTime);
             if (test == null)
             {
                 return null;
             }
-            var testDto = new TestDto()
-            {
-                Id = test.Id,
-                Name = test.Name,
-                About = test.About,
-                Level = test.Level,
-                DateTime = test.DateTime,
+            //var testDto = new TestDto()
+            //{
+            //    Id = test.Id,
+            //    Name = test.Name,
+            //    About = test.About,
+            //    Level = test.Level,
+            //    DateTime = test.DateTime,
 
 
-            };
-            return testDto;
+            //};
+            return test;
         }
 
-        public Test CreateTest(PostAndPutTestDto model)
+        public Test CreateTest(PostAndPutTestDto testDto)
         {
             Test test = new Test()
             {
-             //   Id = Guid.NewGuid(),
-                Name = model.Name,
-                About = model.About,
-                Level = model.Level,
-                DateTime = DateTime.Now
+                Name = testDto.Name,
+                About = testDto.About,
+                Level = testDto.Level,
+                DateTime = DateTime.UtcNow
             };
 
             return testRepository.CreateTest(test);
@@ -72,7 +74,11 @@ namespace SkillMatcher.Service
             return testRepository.UpdateTestById(id, testDto);
         }
 
-       
+        public DateTime ConvertToTehranTime(DateTime utcDateTime)
+        {
+            var tehranTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Tehran");
+            return TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, tehranTimeZone);
+        }
     }
 }
 
