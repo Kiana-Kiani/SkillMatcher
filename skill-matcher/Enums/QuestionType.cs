@@ -5,7 +5,5 @@
         MultipleChoice,
         Essay,
         Percent
-
     }
-
 }

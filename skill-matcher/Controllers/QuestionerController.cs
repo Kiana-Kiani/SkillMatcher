@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SkillMatcher.DataModel;
 using SkillMatcher.Dto.Questioner;
-using SkillMatcher.Repository.Contracts;
-using SkillMatcher.Service;
 using SkillMatcher.Service.Interfaces;
 
 namespace SkillMatcher.Controllers

@@ -9,7 +9,6 @@ namespace SkillMatcher.Dto.QuestionOption
         [BsonId]
         public Guid Id { get; set; } // MongoDB-generated ID
         public Guid TestId { get; set; } // Foreign key to Test
-                                         //   public Dictionary<string, string> QuestionText { get; set; } = new Dictionary<string, string>();
         public QuestionDictDto QuestionText { get; set; }
         public QuestionType Type { get; set; }
         public int Level { get; set; }

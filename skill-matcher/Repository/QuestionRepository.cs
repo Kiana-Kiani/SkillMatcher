@@ -76,16 +76,7 @@ namespace SkillMatcher.Repository
         }
         public int UpdateQuestionById(Guid id, PostAndPutQuestionDto questionDto)
         {
-            // var question = new Question();
-            //  question.Options = new List<Option>();
-            // question.Options = questionDto.Options;
-            //foreach (var optionDto in questionDto.Options)
-            //{
-            //    Option option = new Option();
-            //    option.Persian = optionDto.Persian;
-            //    option.English = optionDto.English;
-            //    question.Options.Add(option);
-            //}
+
             var updateDefinition = Builders<Question>.Update
               .Set(q => q.QuestionText.Persian, questionDto.QuestionText.Persian)
               .Set(q => q.QuestionText.English, questionDto.QuestionText.English)

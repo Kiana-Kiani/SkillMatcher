@@ -62,36 +62,6 @@ namespace SkillMatcher.Service
         {
             return questionRepository.UpdateQuestionById(id, questionDto);
         }
-
-
-        //public QuestionTypeForUi MappQuestionToQuestionTypeForUi(Question question)
-        //{
-        //    QuestionTypeForUi questionTypeForUi = new QuestionTypeForUi()
-        //    {
-        //        AnswerCount = question.AnswerCount,
-        //        Id = question.Id,
-        //        Level = question.Level,
-        //        Options = question.Options,
-        //        QuestionText = question.QuestionText,
-        //        TestId = question.TestId,
-        //        Type = ConvertStringtoIntQuestionType(question.Type)
-
-        //    };
-        //    return questionTypeForUi;
-        //}
-        //public QuestionType ConvertStringtoIntQuestionType(string typeStr)
-        //{
-        //    Dictionary<string, int> keyValuePairs = new Dictionary<string, int>()
-        //    {
-        //        { "MultipleChoice" , 0 },
-        //        { "Essay" , 1 },
-        //        { "Percent" , 2 }
-        //    };
-        //    return (QuestionType)keyValuePairs[typeStr];
-
-
-        //}
-
     }
 }
 

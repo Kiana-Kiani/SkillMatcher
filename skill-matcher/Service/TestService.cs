@@ -1,11 +1,7 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Bson.Serialization;
-using SkillMatcher.DataModel;
+﻿using SkillMatcher.DataModel;
+using SkillMatcher.Dto.Test;
 using SkillMatcher.Repository.Contracts;
 using SkillMatcher.Service.Interfaces;
-using static System.Net.Mime.MediaTypeNames;
-using SkillMatcher.Dto.Test;
 
 namespace SkillMatcher.Service
 {
@@ -25,11 +21,6 @@ namespace SkillMatcher.Service
                 test.DateTime = ConvertToTehranTime(test.DateTime);
 
             }
-            // var testDto = new List<TestDto>();
-            //foreach (var item in tests)
-            //{
-            //    testDto.Add(new TestDto() { Id = item.Id, Name = item.Name, DateTime = item.DateTime, Level = item.Level, About = item.About });
-            //}
             return tests;
         }
         public Test GetTestById(Guid id)
@@ -40,16 +31,6 @@ namespace SkillMatcher.Service
             {
                 return null;
             }
-            //var testDto = new TestDto()
-            //{
-            //    Id = test.Id,
-            //    Name = test.Name,
-            //    About = test.About,
-            //    Level = test.Level,
-            //    DateTime = test.DateTime,
-
-
-            //};
             return test;
         }
 

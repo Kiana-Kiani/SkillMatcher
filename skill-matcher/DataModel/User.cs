@@ -27,11 +27,6 @@ namespace SkillMatcher.DataModel
 
         [BsonRepresentation(BsonType.String)]
         public JobStatus EmploymentStatus { get; set; }
-
-        //    public JobStatus EmploymentStatus { get; set; } 
-        //public Gender GenderType { get; set; } 
-        //  public Language PreferredLanguage { get; set; }
-        //public Education EducationLevel { get; set; } 
     }
 }
 

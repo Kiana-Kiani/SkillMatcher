@@ -28,16 +28,8 @@ namespace SkillMatcher.Repository
         }
         public Test CreateTest(Test test)
         {
-
-            //try
-            //{
             TestCollection.InsertOne(test);
             return test;
-            //}
-            //catch
-            //{
-            //    return Guid.Empty;
-            //}
         }
         public bool DeleteTestById(Guid id)
         {

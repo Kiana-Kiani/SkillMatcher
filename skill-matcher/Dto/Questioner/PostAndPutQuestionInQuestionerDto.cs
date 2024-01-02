@@ -8,13 +8,8 @@ namespace SkillMatcher.Dto.Questioner
     public class PostAndPutQuestionInQuestionerDto
     {
         public Guid Id { get; set; } // MongoDB-generated ID
-        public Guid TestId { get; set; } // Foreign key to Test
-                                         //public Dictionary<string, string> QuestionText { get; set; } = new Dictionary<string, string>() 
-                                         //{
-
-        //};
+        public Guid TestId { get; set; } 
         public QuestionDictDto QuestionText { get; set; } = new QuestionDictDto();
-
         public QuestionType Type { get; set; }
         public int Level { get; set; }
         public int AnswerCount { get; set; }

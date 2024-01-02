@@ -58,7 +58,7 @@ namespace SkillMatcher.Controllers
         public IActionResult CreateQuestion(Guid testId, [FromBody] PostAndPutQuestionDto questionDto)
         {
 
-            var question = questionService.CreateQuestion(testId, questionDto);
+            Question question = questionService.CreateQuestion(testId, questionDto);
             if (question != null)
                 return Ok(question);
             else
@@ -69,10 +69,7 @@ namespace SkillMatcher.Controllers
         [ProducesResponseType(200)]
         public IActionResult DeleteQuestionById(Guid id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Input Is null.");
-            }
+
 
             if (questionService.DeleteQuestionById(id))
                 return Ok("Question deleted successfully.");
