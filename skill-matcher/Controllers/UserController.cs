@@ -23,7 +23,8 @@ namespace SkillMatcher.Controllers
             User userFirstInfoBot = UserService.InsertFirstInfoBot(userFirstInfoBotDto);
             if (userFirstInfoBot == null)
             {
-                return BadRequest("This TelegramID already exists.");
+                return StatusCode(402,"This TelegramID already exists.");
+              //  return BadRequest("This TelegramID already exists.");
             }
             return Ok(userFirstInfoBot);
         }
