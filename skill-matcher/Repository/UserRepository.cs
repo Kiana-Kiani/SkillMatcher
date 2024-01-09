@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using SkillMatcher.DataModel;
-using SkillMatcher.Repository.Contracts;
+using SkillMatcher.Repository.Interfaces;
 
 namespace SkillMatcher.Repository
 {
@@ -36,11 +36,11 @@ namespace SkillMatcher.Repository
             }
         }
 
-        public User GetUserInfoBot(string telegrmId)
+        public User GetUserInfoBot(string telegramId)
         {
             try
             {
-                var filter = Builders<User>.Filter.Eq(q => q.TelegramId, telegrmId);
+                var filter = Builders<User>.Filter.Eq(q => q.TelegramId, telegramId);
                 var user = UserCollection.Find(filter).FirstOrDefault();
                 return user;
             }

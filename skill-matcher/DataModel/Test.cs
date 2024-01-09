@@ -11,5 +11,7 @@ namespace SkillMatcher.DataModel
         public string About { get; set; }
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime DateTime { get; set; }
+        public List<Rule> Rule { get; set; } = new List<Rule>();
+
     }
 }

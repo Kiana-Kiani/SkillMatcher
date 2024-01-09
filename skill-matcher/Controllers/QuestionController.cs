@@ -62,7 +62,7 @@ namespace SkillMatcher.Controllers
             if (question != null)
                 return Ok(question);
             else
-                return BadRequest("Question was not created.");
+                return BadRequest("Question was not created. It's possible that there might not be any Test With this id..");
         }
 
         [HttpDelete("{id}")]

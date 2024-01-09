@@ -1,5 +1,5 @@
 using SkillMatcher.Repository;
-using SkillMatcher.Repository.Contracts;
+using SkillMatcher.Repository.Interfaces;
 using SkillMatcher.Service;
 using SkillMatcher.Service.Interfaces;
 using static System.Net.Mime.MediaTypeNames;
@@ -32,6 +32,10 @@ builder.Services.AddSingleton(typeof(IQuestionerRepository), typeof(QuestionerRe
 
 builder.Services.AddSingleton(typeof(IUserService), typeof(UserService));
 builder.Services.AddSingleton(typeof(IUserRepository), typeof(UserRepository));
+
+
+builder.Services.AddSingleton(typeof(IPromptService), typeof(PromptService));
+builder.Services.AddSingleton(typeof(IPromptRepository), typeof(PromptRepository));
 
 
 var app = builder.Build();

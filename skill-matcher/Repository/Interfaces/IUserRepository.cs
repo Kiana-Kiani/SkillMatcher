@@ -1,11 +1,11 @@
 ﻿using SkillMatcher.DataModel;
 using SkillMatcher.Dto;
 
-namespace SkillMatcher.Repository.Contracts
+namespace SkillMatcher.Repository.Interfaces
 {
     public interface IUserRepository
     {
         public User InsertFirstInfoBot(User user);
-        public User GetUserInfoBot(string telegrmId);
+        public User GetUserInfoBot(string telegramId);
     }
 }

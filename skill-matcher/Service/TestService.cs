@@ -1,6 +1,6 @@
 ﻿using SkillMatcher.DataModel;
 using SkillMatcher.Dto.Test;
-using SkillMatcher.Repository.Contracts;
+using SkillMatcher.Repository.Interfaces;
 using SkillMatcher.Service.Interfaces;
 
 namespace SkillMatcher.Service

@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using SkillMatcher.DataModel;
 using SkillMatcher.Dto.Test;
-using SkillMatcher.Repository.Contracts;
+using SkillMatcher.Repository.Interfaces;
 
 namespace SkillMatcher.Repository
 {
@@ -42,7 +42,8 @@ namespace SkillMatcher.Repository
         {
             var updateDefinition = Builders<Test>.Update.Set(q => q.Name, testDto.Name)
                 .Set(q => q.Level, testDto.Level)
-                .Set(q => q.About, testDto.About);
+                .Set(q => q.About, testDto.About).
+                Set(q=>q.Rule,testDto.Rule);
 
             var filter = Builders<Test>.Filter.Eq(q => q.Id, id);
             try

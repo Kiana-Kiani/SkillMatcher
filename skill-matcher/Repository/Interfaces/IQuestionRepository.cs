@@ -1,7 +1,7 @@
 ﻿using SkillMatcher.DataModel;
 using SkillMatcher.Dto.QuestionOption;
 
-namespace SkillMatcher.Repository.Contracts
+namespace SkillMatcher.Repository.Interfaces
 {
     public interface IQuestionRepository
     {

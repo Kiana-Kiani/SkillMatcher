@@ -6,6 +6,6 @@ namespace SkillMatcher.Service.Interfaces
     public interface IUserService
     {
         public User InsertFirstInfoBot(UserFirstInfoBotDto userFirstInfoDto);
-        public User GetUserInfoBot(string telegrmId);
+        public User GetUserInfoBot(string telegramId);
     }
 }

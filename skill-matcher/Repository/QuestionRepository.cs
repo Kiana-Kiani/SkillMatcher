@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using SkillMatcher.DataModel;
 using SkillMatcher.Dto.QuestionOption;
-using SkillMatcher.Repository.Contracts;
+using SkillMatcher.Repository.Interfaces;
 
 namespace SkillMatcher.Repository
 {
@@ -10,6 +10,7 @@ namespace SkillMatcher.Repository
     {
         private readonly IMongoDatabase db;
         private readonly IMongoCollection<Question> QuestionsCollection;
+        private readonly IMongoCollection<Test> TestsCollection;
         private readonly IConfiguration configuration;
 
         public QuestionRepository(IConfiguration configuration)
@@ -19,6 +20,7 @@ namespace SkillMatcher.Repository
             var client = new MongoClient(connectionString);
             db = client.GetDatabase("JobOffererTest");
             QuestionsCollection = db.GetCollection<Question>("Questions");
+            TestsCollection = db.GetCollection<Test>("Tests");
         }
         public bool DeleteQuestionById(Guid id)
         {
@@ -66,6 +68,15 @@ namespace SkillMatcher.Repository
         {
             try
             {
+                var filter = Builders<Test>.Filter.Eq(q => q.Id, question.TestId);
+
+                Test findTest = TestsCollection.Find(filter).FirstOrDefault();
+
+                if (findTest == null)
+                {
+                    return null;
+
+                }
                 QuestionsCollection.InsertOne(question);
                 return question;
             }

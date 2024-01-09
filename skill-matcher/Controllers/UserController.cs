@@ -29,11 +29,11 @@ namespace SkillMatcher.Controllers
             return Ok(userFirstInfoBot);
         }
 
-        [HttpGet("{telegrmId}")]
+        [HttpGet("{telegramId}")]
         [ProducesResponseType(typeof(User), 200)]
-        public IActionResult GetUserInfoBot(string telegrmId)
+        public IActionResult GetUserInfoBot(string telegramId)
         {
-            var UserInfo = UserService.GetUserInfoBot(telegrmId.ToLower());
+            var UserInfo = UserService.GetUserInfoBot(telegramId.ToLower());
             if (UserInfo == null)
             {
                 return NotFound("Not Found.");

@@ -1,7 +1,7 @@
 ﻿using SkillMatcher.DataModel;
 using SkillMatcher.Dto.User;
 using SkillMatcher.Enums;
-using SkillMatcher.Repository.Contracts;
+using SkillMatcher.Repository.Interfaces;
 using SkillMatcher.Service.Interfaces;
 
 namespace SkillMatcher.Service
@@ -30,9 +30,9 @@ namespace SkillMatcher.Service
             return userRepository.InsertFirstInfoBot(user);
         }
 
-        public User GetUserInfoBot(string telegrmId)
+        public User GetUserInfoBot(string telegramId)
         {
-            return userRepository.GetUserInfoBot(telegrmId);
+            return userRepository.GetUserInfoBot(telegramId);
         }
     }
 }
